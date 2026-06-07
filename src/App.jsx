@@ -509,12 +509,12 @@ export default function App() {
     return (
       <div style={S.screen}>
         <style>{FONTS}</style>
-        {/* Header avec SVG géant qui déborde — sans boutons */}
-        <div style={{ position: "relative", background: cat.color, height: 130, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
+        {/* Header couleur plein bord — sans safe-area pour déborder */}
+        <div style={{ position: "relative", background: cat.color, height: 160, overflow: "hidden", flexShrink: 0 }}>
           <div style={{ position: "absolute", right: -10, top: "50%", transform: "translateY(-50%) scale(3.2)", transformOrigin: "center right", opacity: 0.3 }}>
             {SUB_ICONS[sub?.name]}
           </div>
-          <div style={{ position: "absolute", bottom: 14, left: 16 }}>
+          <div style={{ position: "absolute", bottom: 16, left: 16 }}>
             <p style={{ fontFamily: FB, fontWeight: 700, fontSize: 26, color: "#fff", textTransform: "uppercase", letterSpacing: 0.5, lineHeight: 1 }}>{sub?.name}</p>
           </div>
         </div>
@@ -550,13 +550,13 @@ export default function App() {
           </div>
         </div>
         {/* Bottom bar */}
-        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "10px 16px", paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)", display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 20 }}>
+        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "12px 20px", paddingBottom: "calc(env(safe-area-inset-bottom) + 12px)", display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 20 }}>
           <button onClick={() => { setEditMode(false); setAddInput(""); setView(view.catId); }}
-            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333" }}>
+            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "10px 18px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333" }}>
             ← Retour
           </button>
           <button onClick={() => { setEditMode(!editMode); setAddInput(""); }}
-            style={{ background: editMode ? cat.color : "#F0F0F0", color: editMode ? "#fff" : "#333", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontWeight: 500, cursor: "pointer", fontFamily: F }}>
+            style={{ background: editMode ? cat.color : "#F0F0F0", color: editMode ? "#fff" : "#333", border: "none", borderRadius: 20, padding: "10px 18px", fontSize: 14, fontWeight: 500, cursor: "pointer", fontFamily: F }}>
             {editMode ? "Terminer" : "Modifier"}
           </button>
         </div>
@@ -577,11 +577,11 @@ export default function App() {
     return (
       <div style={S.screen}>
         <style>{FONTS}</style>
-        {/* Header photo — sans boutons */}
-        <div style={{ position: "relative", height: 160, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
+        {/* Header photo — plein bord, sans barre grise */}
+        <div style={{ position: "relative", height: 200, overflow: "hidden", flexShrink: 0 }}>
           <img src={cat.img} alt={cat.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%)" }} />
-          <div style={{ position: "absolute", bottom: 14, left: 16 }}>
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.65) 100%)" }} />
+          <div style={{ position: "absolute", bottom: 16, left: 16 }}>
             <p style={{ fontFamily: FB, fontWeight: 700, fontSize: 28, color: "#fff", textTransform: "uppercase", letterSpacing: 0.5, lineHeight: 1 }}>{cat.label}</p>
           </div>
         </div>
@@ -601,9 +601,9 @@ export default function App() {
           })}
         </div>
         {/* Bottom bar */}
-        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "10px 16px", paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)", display: "flex", alignItems: "center", zIndex: 20 }}>
+        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "12px 20px", paddingBottom: "calc(env(safe-area-inset-bottom) + 12px)", display: "flex", alignItems: "center", zIndex: 20 }}>
           <button onClick={() => setView("home")}
-            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333" }}>
+            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "10px 18px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333", display: "flex", alignItems: "center", gap: 6 }}>
             ← Retour
           </button>
         </div>
@@ -618,7 +618,7 @@ export default function App() {
       <Overlays />
 
       {/* HEADER centré */}
-      <div style={{ background: "#fff", padding: "18px 20px 14px", textAlign: "center", borderBottom: "1px solid #eee", position: "sticky", top: 0, zIndex: 10 }}>
+      <div style={{ background: "#fff", paddingTop: "calc(env(safe-area-inset-top) + 14px)", paddingBottom: 14, textAlign: "center", borderBottom: "1px solid #eee", position: "sticky", top: 0, zIndex: 10 }}>
         <span style={{ fontFamily: "'Pacifico', cursive", fontSize: 24, color: "#2D6A4F" }}>Régalade en vue</span>
         {syncing && <span style={{ position: "absolute", top: 8, right: 14, width: 8, height: 8, borderRadius: "50%", background: "#2D6A4F", display: "inline-block", animation: "pulse 1s infinite" }} />}
       </div>
