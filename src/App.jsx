@@ -461,7 +461,7 @@ export default function App() {
             </div>
           </div>
         )}
-        <div style={{ background: "#fff", padding: "18px 16px 14px", display: "flex", alignItems: "center", gap: 12, position: "sticky", top: 0, zIndex: 10, borderBottom: "1px solid #eee" }}>
+        <div style={{ background: "#fff", paddingTop: "calc(env(safe-area-inset-top) + 14px)", paddingBottom: 14, paddingLeft: 16, paddingRight: 16, display: "flex", alignItems: "center", gap: 12, position: "sticky", top: 0, zIndex: 10, borderBottom: "1px solid #eee" }}>
           <button style={{ background: "none", border: "none", fontSize: 14, cursor: "pointer", color: "#2D6A4F", fontFamily: F, fontWeight: 500 }} onClick={() => setShoppingMode(false)}>← Retour</button>
           <span style={{ flex: 1, fontFamily: F, fontWeight: 600, fontSize: 16, color: "#1a1a1a" }}>Mes courses</span>
           <span style={{ background: "#F0F0F0", padding: "3px 10px", borderRadius: 12, fontSize: 13, fontFamily: F, color: "#555" }}>{checkedItems.length}/{shoppingList.length}</span>
@@ -510,13 +510,13 @@ export default function App() {
       <div style={S.screen}>
         <style>{FONTS}</style>
         {/* Header avec SVG géant qui déborde */}
-        <div style={{ position: "relative", background: cat.color, height: 130, overflow: "hidden", flexShrink: 0 }}>
+        <div style={{ position: "relative", background: cat.color, height: 130, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
           {/* SVG géant centré, qui déborde */}
           <div style={{ position: "absolute", right: -10, top: "50%", transform: "translateY(-50%) scale(3.2)", transformOrigin: "center right", opacity: 0.3 }}>
             {SUB_ICONS[sub?.name]}
           </div>
           <button onClick={() => { setEditMode(false); setAddInput(""); setView(view.catId); }}
-            style={{ position: "absolute", top: 16, left: 16, background: "rgba(0,0,0,0.25)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
+            style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", left: 16, background: "rgba(0,0,0,0.25)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
             ← {cat.label}
           </button>
           <button onClick={() => { setEditMode(!editMode); setAddInput(""); }}
@@ -576,14 +576,14 @@ export default function App() {
       <div style={S.screen}>
         <style>{FONTS}</style>
         {/* Header photo */}
-        <div style={{ position: "relative", height: 160, overflow: "hidden", flexShrink: 0 }}>
+        <div style={{ position: "relative", height: 160, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
           <img src={cat.img} alt={cat.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%)" }} />
           <button onClick={() => setView("home")}
-            style={{ position: "absolute", top: 16, left: 16, background: "rgba(0,0,0,0.3)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
+            style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", left: 16, background: "rgba(0,0,0,0.3)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
             ← Retour
           </button>
-          <span style={{ position: "absolute", top: 16, right: 16, background: cat.color, color: "#fff", borderRadius: 12, padding: "4px 12px", fontSize: 12, fontFamily: F, fontWeight: 600 }}>
+          <span style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", right: 16, background: cat.color, color: "#fff", borderRadius: 12, padding: "4px 12px", fontSize: 12, fontFamily: F, fontWeight: 600 }}>
             {shoppingList.filter(k => k.startsWith(cat.id + "::")).length} art.
           </span>
           <div style={{ position: "absolute", bottom: 14, left: 16 }}>
