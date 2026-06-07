@@ -509,26 +509,17 @@ export default function App() {
     return (
       <div style={S.screen}>
         <style>{FONTS}</style>
-        {/* Header avec SVG géant qui déborde */}
+        {/* Header avec SVG géant qui déborde — sans boutons */}
         <div style={{ position: "relative", background: cat.color, height: 130, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
-          {/* SVG géant centré, qui déborde */}
           <div style={{ position: "absolute", right: -10, top: "50%", transform: "translateY(-50%) scale(3.2)", transformOrigin: "center right", opacity: 0.3 }}>
             {SUB_ICONS[sub?.name]}
           </div>
-          <button onClick={() => { setEditMode(false); setAddInput(""); setView(view.catId); }}
-            style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", left: 16, background: "rgba(0,0,0,0.25)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
-            ← {cat.label}
-          </button>
-          <button onClick={() => { setEditMode(!editMode); setAddInput(""); }}
-            style={{ position: "absolute", top: 16, right: 16, background: editMode ? "#fff" : "rgba(0,0,0,0.25)", color: editMode ? cat.color : "#fff", border: "none", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: F }}>
-            {editMode ? "Terminer" : "Modifier"}
-          </button>
           <div style={{ position: "absolute", bottom: 14, left: 16 }}>
             <p style={{ fontFamily: FB, fontWeight: 700, fontSize: 26, color: "#fff", textTransform: "uppercase", letterSpacing: 0.5, lineHeight: 1 }}>{sub?.name}</p>
           </div>
         </div>
 
-        <div style={{ padding: "14px 14px 100px" }}>
+        <div style={{ padding: "14px 14px 80px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
             {sortedItems.map(item => {
               const key = `${cat.id}::${item}`;
@@ -558,6 +549,17 @@ export default function App() {
             </div>
           </div>
         </div>
+        {/* Bottom bar */}
+        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "10px 16px", paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)", display: "flex", alignItems: "center", justifyContent: "space-between", zIndex: 20 }}>
+          <button onClick={() => { setEditMode(false); setAddInput(""); setView(view.catId); }}
+            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333" }}>
+            ← Retour
+          </button>
+          <button onClick={() => { setEditMode(!editMode); setAddInput(""); }}
+            style={{ background: editMode ? cat.color : "#F0F0F0", color: editMode ? "#fff" : "#333", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontWeight: 500, cursor: "pointer", fontFamily: F }}>
+            {editMode ? "Terminer" : "Modifier"}
+          </button>
+        </div>
       </div>
     );
   }
@@ -575,23 +577,16 @@ export default function App() {
     return (
       <div style={S.screen}>
         <style>{FONTS}</style>
-        {/* Header photo */}
+        {/* Header photo — sans boutons */}
         <div style={{ position: "relative", height: 160, paddingTop: "env(safe-area-inset-top)", boxSizing: "content-box", overflow: "hidden", flexShrink: 0 }}>
           <img src={cat.img} alt={cat.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%)" }} />
-          <button onClick={() => setView("home")}
-            style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", left: 16, background: "rgba(0,0,0,0.3)", border: "none", color: "#fff", borderRadius: 20, padding: "6px 14px", fontSize: 13, fontFamily: F, fontWeight: 500, cursor: "pointer" }}>
-            ← Retour
-          </button>
-          <span style={{ position: "absolute", top: "calc(env(safe-area-inset-top) + 12px)", right: 16, background: cat.color, color: "#fff", borderRadius: 12, padding: "4px 12px", fontSize: 12, fontFamily: F, fontWeight: 600 }}>
-            {shoppingList.filter(k => k.startsWith(cat.id + "::")).length} art.
-          </span>
           <div style={{ position: "absolute", bottom: 14, left: 16 }}>
             <p style={{ fontFamily: FB, fontWeight: 700, fontSize: 28, color: "#fff", textTransform: "uppercase", letterSpacing: 0.5, lineHeight: 1 }}>{cat.label}</p>
           </div>
         </div>
 
-        <div style={{ padding: "16px 14px 100px" }}>
+        <div style={{ padding: "16px 14px 80px" }}>
           {cat.subcategories.map(sub => {
             const count = shoppingList.filter(k => k.startsWith(cat.id + "::") && sub.items.includes(k.split("::")[1])).length;
             return (
@@ -604,6 +599,13 @@ export default function App() {
               </button>
             );
           })}
+        </div>
+        {/* Bottom bar */}
+        <div style={{ position: "fixed", bottom: 0, left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: 420, background: "#fff", borderTop: "1px solid #eee", padding: "10px 16px", paddingBottom: "calc(env(safe-area-inset-bottom) + 10px)", display: "flex", alignItems: "center", zIndex: 20 }}>
+          <button onClick={() => setView("home")}
+            style={{ background: "#F0F0F0", border: "none", borderRadius: 20, padding: "8px 16px", fontSize: 14, fontFamily: F, fontWeight: 500, cursor: "pointer", color: "#333" }}>
+            ← Retour
+          </button>
         </div>
       </div>
     );
